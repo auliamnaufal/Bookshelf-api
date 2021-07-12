@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const routes = require('./routes');
 
 const init = async () => {
   const server = Hapi.server({
@@ -11,13 +12,7 @@ const init = async () => {
     },
   });
 
-  server.route([
-    {
-      method: 'GET',
-      path: '/books',
-      handler: () => 'apa kabaar',
-    },
-  ]);
+  server.route(routes);
 
   await server.start();
   console.log(`Server berjalan pada port ${server.info.uri}`);
